@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('post_type');
             $table->string('post_content');
             $table->text('post_description');
+            $table->string('post_image')->nullable();
             $table->timestamps();
         });
     }
