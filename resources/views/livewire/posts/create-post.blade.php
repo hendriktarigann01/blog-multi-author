@@ -9,6 +9,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="flex justify-end">
+                        <a href="{{ route('dashboard') }}">
+                            <button
+                                class="flex justify-center items-center w-10 h-10 rounded bg-gray-300 hover:border hover:border-gray-300 dark:bg-gray-700">
+                                <i class="fa-solid fa-angles-left"></i>
+                            </button>
+                        </a>
+                    </div>
                     <!-- Form untuk Create Post -->
                     <form action="{{ route('posts.dashboard') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -21,11 +29,17 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="post_type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                Tipe Post
+                            <label for="post_category_id"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                Category
                             </label>
-                            <input type="text" name="post_type" id="post_type" required
+                            <select wire:model="post_category_id" id="post_category_id" name="post_category_id"
                                 class="mt-1 block w-full rounded-md shadow-sm border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                <option value="">Select a category</option>
+                                @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="mb-4">
@@ -61,5 +75,4 @@
                 </div>
             </div>
         </div>
-    </div>
 </x-app-layout>

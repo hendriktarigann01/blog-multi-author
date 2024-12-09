@@ -1,38 +1,28 @@
-<nav class="flex items-center justify-center">
+<nav>
     @auth
-        <a
-            href="{{ url('/dashboard') }}"
-            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-        >
-            Dashboard
-        </a>
+    <a href="{{ url('/dashboard') }}"
+        class="blog-menu">
+        Dashboard
+    </a>
     @else
-      <a
-            href="{{ route('blog') }}"
-            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-        >
-            Blog
-        </a>
-         <a
-            href="{{ route('category') }}"
-            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-        >
-            Category
-        </a>
-        <a
-            href="{{ route('login') }}"
-            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-        >
-            Log in
-        </a>
+    <a href="{{ route('home') }}"
+        class="blog-menu">
+        Home
+    </a>
+    <a href="{{ route('article') }}"
+        class="blog-menu">
+        Article
+    </a>
+    <a href="{{ route('login') }}"
+        class="blog-menu">
+        Log in
+    </a>
 
-        @if (Route::has('register'))
-            <a
-                href="{{ route('register') }}"
-                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-            >
-                Register
-            </a>
-        @endif
+    @if (Route::has('register'))
+    <a href="{{ route('register') }}"
+        class="blog-menu">
+        Register
+    </a>
+    @endif
     @endauth
 </nav>
