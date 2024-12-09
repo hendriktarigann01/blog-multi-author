@@ -3,16 +3,21 @@
 namespace App\Livewire\Posts;
 
 use Livewire\Component;
+use App\Models\Category;
+
 
 class CreatePost extends Component
 {
-    public function create()
+    public $categories; // Tambahkan properti
+
+    public function mount()
     {
-        return redirect(route('posts.create'));
+        // Ambil data kategori dari database
+        $this->categories = Category::all();
     }
 
     public function render()
     {
-        return view('livewire.posts.create-post');
+        return view('livewire.posts.create-post')->layout('layouts.livewire');
     }
 }

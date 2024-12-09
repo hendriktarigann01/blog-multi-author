@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -13,7 +12,7 @@ class PostController extends Controller
     {
         $validated = $request->validate([
             'post_title' => 'required|string|max:255',
-            'post_type' => 'required|string|max:255',
+            'post_category_id' => 'required|string|max:255',
             'post_content' => 'required|string',
             'post_description' => 'required|string',
             'post_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -32,5 +31,11 @@ class PostController extends Controller
         Post::create($validated);
 
         return redirect()->route('dashboard')->with('success', 'Post created successfully!');
+    }
+
+    public function index()
+    {
+        $posts = Post::inRandomOrder()->limit(5)->get(); // Mengambil 5 data secara acak
+        return view('welcome', compact('posts')); // Mengirim data ke view 'welcome'
     }
 }
