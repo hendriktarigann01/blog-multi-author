@@ -35,7 +35,13 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::inRandomOrder()->limit(5)->get(); // Mengambil 5 data secara acak
-        return view('welcome', compact('posts')); // Mengirim data ke view 'welcome'
+        $posts = Post::inRandomOrder()->limit(5)->get();
+        return view('home', compact('posts'));
+    }
+
+    public function show()
+    {
+        $post = Post::all();
+        return view('article', compact('post'));
     }
 }
