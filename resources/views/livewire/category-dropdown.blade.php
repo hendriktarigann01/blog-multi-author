@@ -17,6 +17,6 @@
                 {{ $category->category_name }}
             </a>
             @endforeach
-        </x-slot>
+       </x-slot>
     </x-dropdown>
 </div>

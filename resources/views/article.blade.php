@@ -12,7 +12,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
     <!-- Styles -->
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/app.scss'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/article.scss'])
 </head>
 
 <body class="antialiased font-sans">
@@ -21,7 +21,7 @@
 
             <div class="blog-part is-menu">
                 @if (Route::has('login'))
-                <livewire:welcome.navigation />
+                <livewire:navbar.navigation />
                 @endif
             </div>
             <div class="blog-header blog-is-sticky">
@@ -34,21 +34,16 @@
                 </div>
             </div>
             <div class="blog-header-container">
-                @foreach ($categories as $category)
+
                 <div class="blog-header">
                     <div class="blog-article header-article">
-                        <div class="blog-big__title">{{ $category->category_name }}</div>
+                        <div class="blog-big__title">sadad</div>
                         <div class="small-title"></div>
                     </div>
                     <div class="blog-article">
-                        @if ($category->category_name === 'Technology')
-                        <img src="https://images.unsplash.com/photo-1607706189992-eae578626c86?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="Technology" class="mb-2">
-                        @elseif ($category->category_name === 'Fitness')
                         <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1975&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             alt="Fitness" class="mb-2">
-                        @endif
-                        <p>{{ $category->category_description }}</p>
+                        <p>asdasda</p>
                         <a href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-down-right"
@@ -60,7 +55,6 @@
                         </a>
                     </div>
                 </div>
-                @endforeach
             </div>
 
             <div class="blog-part right-blog">
@@ -76,16 +70,14 @@
                     <div class="blog-menu rounded">See All</div>
                 </div>
                 <div class="blog-right">
-                    @foreach ($posts as $post)
                     <div class="blog-right-container">
                         <div class="blog-title-date">
-                            <div class="blog-right-page">{{ $loop->iteration }}</div>
-                            <div class="date">{{ $post->created_at->format('d.m.Y') }}</div>
+                            <div class="blog-right-page">asdasd</div>
+                            <div class="date">1231231</div>
                         </div>
-                        <div class="blog-right-page-title">{{ $post->post_title }}</div>
-                        <div class="blog-right-page-subtitle">{{ Str::limit($post->post_description, 100) }}</div>
+                        <div class="blog-right-page-title">asda</div>
+                        <div class="blog-right-page-subtitle">adadasda</div>
                     </div>
-                    @endforeach
                     <div class="circle">
                         <div class="circle-title">Don't Worry About What Other People Think</div>
                         <div class="circle-subtitle">let it go. be unique, memorable, confident, but mainly be you</div>
