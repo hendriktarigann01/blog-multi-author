@@ -9,9 +9,8 @@ use App\Http\Controllers\CategoryController;
 Route::get('/', function () {
     $categories = app(CategoryController::class)->index()->getData()['categories'];
     $posts = app(PostController::class)->index()->getData()['posts'];
-
-    return view('welcome', compact('categories', 'posts'));
-});
+    return view('home', compact('categories', 'posts'));
+})->name('home');
 
 Route::get('dashboard', [ViewPostController::class, 'index'])
     ->middleware(['auth', 'verified'])
@@ -21,10 +20,13 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-// navbar
-Route::view('home', 'home')->name('home');
-Route::view('article', 'article')->name('article');
+// Route::view('home', 'home')->name('home');
+
+Route::view('/article', 'article')->name('article');
+// Route::get('/article',[PostController::class, 'show'])->name('article');
+
 Route::view('contact', 'contact')->name('contact');
+
 Route::view('faq', 'faq')->name('faq');
 
 Route::get('/create', CreatePost::class)->middleware(['auth'])->name('posts.create');
