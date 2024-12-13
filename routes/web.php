@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ViewPostController;
 use App\Livewire\Posts\CreatePost;
 use App\Http\Controllers\CategoryController;
+use App\Livewire\Posts\PostDetail;
 
 Route::get('/', function () {
     $categories = app(CategoryController::class)->index()->getData()['categories'];
@@ -20,10 +21,9 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-// Route::view('home', 'home')->name('home');
+Route::get('/article', [PostController::class, 'show'])->name('article');
+Route::get('/article/{id}', PostDetail::class)->name('posts.show');
 
-Route::view('/article', 'article')->name('article');
-// Route::get('/article',[PostController::class, 'show'])->name('article');
 
 Route::view('contact', 'contact')->name('contact');
 
