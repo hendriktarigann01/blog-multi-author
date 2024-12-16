@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ViewPostController;
 use App\Livewire\Posts\CreatePost;
@@ -32,5 +33,6 @@ Route::view('faq', 'faq')->name('faq');
 Route::get('/create', CreatePost::class)->middleware(['auth'])->name('posts.create');
 
 Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->name('posts.dashboard');
+
 
 require __DIR__ . '/auth.php';
