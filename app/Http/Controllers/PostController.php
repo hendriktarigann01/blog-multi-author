@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PostController extends Controller
 {
@@ -41,7 +42,7 @@ class PostController extends Controller
 
     public function show()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(5);
         return view('article', compact('posts'));
     }
 }
