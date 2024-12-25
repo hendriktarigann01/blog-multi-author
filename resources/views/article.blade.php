@@ -25,7 +25,7 @@
                 <div class="blog-article">
                     <img src="{{ url('images/posts/' . $post->post_image) }}" alt="Image Post" class="mb-2 shadow-lg">
                     <p>{{ Str::limit($post->post_description, 200) }}</p>
-                    <a href="{{ route('posts.show', $post->id) }}">
+                    <a href="{{ route('posts.show', $post->id) }}" class="see-more">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-down-right"
                             viewBox="0 0 24 24">
