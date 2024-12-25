@@ -51,25 +51,24 @@
     {{-- Nomor Halaman --}}
     <div class="flex items-center gap-x-1">
         @foreach ($paginator->links()->elements as $element)
-        {{-- Tanda "..." --}}
-        @if (is_string($element))
-        <span class="min-h-[38px] min-w-[38px] py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg border hover:border-cyan-800 disabled:opacity-50 disabled:cursor-not-allowed text-cyan-800">{{ $element }}</span>
-        @endif
-
         {{-- Link Halaman --}}
-        @if (is_array($element))
-        @foreach ($element as $page => $url)
-        @if ($page == $paginator->currentPage())
-        <button type="button"
-            class="min-h-[38px] min-w-[38px] py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg border hover:border-cyan-800 disabled:opacity-50 disabled:cursor-not-allowed text-cyan-800"
-            aria-current="page">{{ $page }}</button>
-        @else
-        <a href="{{ $url }}"
-            class="min-h-[38px] min-w-[38px] py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg border hover:border-cyan-800 disabled:opacity-50 disabled:cursor-not-allowed text-cyan-800">{{
-            $page }}</a>
-        @endif
-        @endforeach
-        @endif
+            @if (is_array($element))
+                @foreach ($element as $page => $url)
+                    @if ($page == $paginator->currentPage())
+                    {{-- Active --}}
+                    <button type="button"
+                        class="min-h-[38px] min-w-[38px] py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg border border-cyan-600 text-cyan-800"
+                        aria-current="page">{{ $page }}
+                    </button>
+                    @else
+                    {{-- Non Active --}}
+                    <a href="{{ $url }}"
+                        class="min-h-[38px] min-w-[38px] py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg border hover:border-cyan-800 text-cyan-800">{{
+                        $page }}
+                    </a>
+                    @endif
+                @endforeach
+            @endif
         @endforeach
     </div>
 
