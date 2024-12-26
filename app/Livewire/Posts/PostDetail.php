@@ -12,6 +12,7 @@ class PostDetail extends Component
     public function mount($id)
     {
         $this->post = Post::findOrFail($id);
+        $this->post->increment('post_views');
     }
 
     public function render()

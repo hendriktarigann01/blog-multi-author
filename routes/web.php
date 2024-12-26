@@ -25,7 +25,6 @@ Route::view('profile', 'profile')
 Route::get('/article', [PostController::class, 'show'])->name('article');
 Route::get('/article/{id}', PostDetail::class)->name('posts.show');
 
-
 Route::view('contact', 'contact')->name('contact');
 
 Route::view('faq', 'faq')->name('faq');
