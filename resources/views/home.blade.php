@@ -30,8 +30,8 @@
                     <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1975&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt="Fitness" class="mb-2">
                     @endif
-                    <p>{{ $category->category_description }}</p>
-                    <a href="#">
+                    <p>{{ Str::limit($category->category_description, 200) }}</p>
+                   <a href="{{ route('category.show', $category->id) }}" class="see-more">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-down-right"
                             viewBox="0 0 24 24">
