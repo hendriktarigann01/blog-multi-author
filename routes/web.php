@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ViewPostController;
 use App\Livewire\Posts\CreatePost;
 use App\Http\Controllers\CategoryController;
+use App\Livewire\Category\CategoryDetail;
 use App\Livewire\Posts\PostDetail;
 
 Route::get('/', function () {
@@ -13,6 +14,9 @@ Route::get('/', function () {
     $posts = app(PostController::class)->index()->getData()['posts'];
     return view('home', compact('categories', 'posts'));
 })->name('home');
+Route::get('/home/{id}', CategoryDetail::class)->name('category.show');
+
+
 
 Route::get('dashboard', [ViewPostController::class, 'index'])
     ->middleware(['auth', 'verified'])
