@@ -4,6 +4,7 @@ namespace App\Livewire\Category;
 
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\Post;
 
 class CategoryDetail extends Component
 {
@@ -13,6 +14,8 @@ class CategoryDetail extends Component
     {
         $this->category = Category::findOrFail($id);
     }
+
+
 
     public function render()
     {

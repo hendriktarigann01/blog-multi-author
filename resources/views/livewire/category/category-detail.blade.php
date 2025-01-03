@@ -1,6 +1,6 @@
 <x-app-layout>
     <div
-        class="bg-[#e9e6e4] w-full h-screen md:h-auto px-5 sm:px-10 md:px-20 lg:px-40 py-10 sm:py-16 md:py-20 text-cyan-800 justify-center overflow-y-auto">
+        class="bg-[#e9e6e4] w-full h-screen px-5 sm:px-10 md:px-20 lg:px-40 py-10 sm:py-16 md:py-20 text-cyan-800 justify-center overflow-y-auto">
         <div class="flex justify-center items-center">
             <p class="text-3xl sm:text-4xl md:text-5xl font-extrabold my-5">{{ $category->category_name }}</p>
         </div>
@@ -23,11 +23,43 @@
                 alt="Fitness" class="rounded my-10 w-80 h-80 md:w-72 md:h-72">
             @endif
         </div>
-        <p class="text-justify text-sm sm:text-base md:text-lg leading-relaxed mx-5 md:mx-0">{{$category->category_description }}</p>
-        <div class="grid grid-cols-3 gap-4 items-center justify-center">
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
+        <p class="text-justify text-sm sm:text-base md:text-lg leading-loose mx-5 md:mx-0">
+            {{$category->category_description }}</p>
+        <p class="my-2 text-sm sm:text-base md:text-lg mt-10 mx-5 md:mx-0">Most Recent Article</p>
+        <div class="mb-10 md:grid md:grid-cols-3 md:gap-10 items-center justify-center mx-5 md:mx-0">
+            <a class="cursor-pointer">
+                <div class="content my-2 md:my-0">
+                    <div class="overflow-hidden w-full h-40">
+                        <img src="https://images.unsplash.com/photo-1607706189992-eae578626c86?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="article"
+                            class="transition-transform duration-500 ease-in-out transform hover:scale-110 w-full h-full object-cover">
+                    </div>
+                    <p>Title</p>
+                    <p>15 Views</p>
+                </div>
+            </a>
+            <a class="cursor-pointer">
+                <div class="content my-2 md:my-0">
+                    <div class="overflow-hidden w-full h-40">
+                        <img src="https://images.unsplash.com/photo-1607706189992-eae578626c86?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="article"
+                            class="transition-transform duration-500 ease-in-out transform hover:scale-110 w-full h-full object-cover">
+                    </div>
+                    <p>Title</p>
+                    <p>15 Views</p>
+                </div>
+            </a>
+            <a class="cursor-pointer">
+                <div class="content my-2 md:my-0">
+                    <div class="overflow-hidden w-full h-40">
+                        <img src="https://images.unsplash.com/photo-1607706189992-eae578626c86?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="article"
+                            class="transition-transform duration-500 ease-in-out transform hover:scale-110 w-full h-full object-cover">
+                    </div>
+                    <p>Title</p>
+                    <p>15 Views</p>
+                </div>
+            </a>
         </div>
     </div>
 </x-app-layout>
