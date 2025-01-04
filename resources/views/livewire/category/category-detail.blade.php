@@ -23,43 +23,25 @@
                 alt="Fitness" class="rounded my-10 w-80 h-80 md:w-72 md:h-72">
             @endif
         </div>
-        <p class="text-justify text-sm sm:text-base md:text-lg leading-loose mx-5 md:mx-0">
-            {{$category->category_description }}</p>
-        <p class="my-2 text-sm sm:text-base md:text-lg mt-10 mx-5 md:mx-0">Most Recent Article</p>
+        <p class="text-justify text-sm sm:text-base md:text-lg leading-loose my-10 mx-5 md:mx-0">
+            {{$category->category_description }}
+        </p>
+        <div class="border-t-custom border-cyan-800 mx-5 md:mx-0 mb-2"></div>
+        <div class="border-t-custom border-cyan-800 mx-5 md:mx-0"></div>
+        <p class="my-2 font-extrabold text-lg sm:text-xl md:text-2xl mt-10 mx-5 md:mx-0">Most Recent Article</p>
         <div class="mb-10 md:grid md:grid-cols-3 md:gap-10 items-center justify-center mx-5 md:mx-0">
-            <a class="cursor-pointer">
+            @foreach ($topViewedPosts as $post)
+            <a href="{{ route('posts.show', $post->id) }}" class="cursor-pointer">
                 <div class="content my-2 md:my-0">
                     <div class="overflow-hidden w-full h-40">
-                        <img src="https://images.unsplash.com/photo-1607706189992-eae578626c86?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="article"
+                        <img src="{{ url('images/posts/' . $post->post_image) }}" alt="Post Image"
                             class="transition-transform duration-500 ease-in-out transform hover:scale-110 w-full h-full object-cover">
                     </div>
-                    <p>Title</p>
-                    <p>15 Views</p>
+                    <p class="my-2 text-sm sm:text-base md:text-lg font-bold">{{ $post->post_title }}</p>
+                    <p class="my-2">{{ $post->post_views }} Views</p>
                 </div>
             </a>
-            <a class="cursor-pointer">
-                <div class="content my-2 md:my-0">
-                    <div class="overflow-hidden w-full h-40">
-                        <img src="https://images.unsplash.com/photo-1607706189992-eae578626c86?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="article"
-                            class="transition-transform duration-500 ease-in-out transform hover:scale-110 w-full h-full object-cover">
-                    </div>
-                    <p>Title</p>
-                    <p>15 Views</p>
-                </div>
-            </a>
-            <a class="cursor-pointer">
-                <div class="content my-2 md:my-0">
-                    <div class="overflow-hidden w-full h-40">
-                        <img src="https://images.unsplash.com/photo-1607706189992-eae578626c86?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="article"
-                            class="transition-transform duration-500 ease-in-out transform hover:scale-110 w-full h-full object-cover">
-                    </div>
-                    <p>Title</p>
-                    <p>15 Views</p>
-                </div>
-            </a>
+            @endforeach
         </div>
     </div>
 </x-app-layout>

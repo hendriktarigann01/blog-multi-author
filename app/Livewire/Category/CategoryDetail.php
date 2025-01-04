@@ -14,7 +14,6 @@ class CategoryDetail extends Component
     public function mount($id)
     {
         $this->category = Category::findOrFail($id);
-
         $this->topViewedPosts = Post::orderBy('post_views', 'desc')->limit(3)->get();
     }
 
