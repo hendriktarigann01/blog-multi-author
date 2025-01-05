@@ -10,8 +10,9 @@
                 <div class="blog-big__title">Category</div>
                 <div class="small-title"></div>
             </div>
-            <div class="blog-article page-number">
-                NO. 01
+            <div class="items-center page-number">
+                <img src="https://user-images.githubusercontent.com/5713670/87202985-820dcb80-c2b6-11ea-9f56-7ec461c497c3.gif"
+                    width="100px" height="100px" class="animate-floatBounce hidden">
             </div>
         </div>
         <div class="blog-header-container">
@@ -25,13 +26,13 @@
                 <div class="blog-article">
                     @if ($category->category_name === 'Technology')
                     <img src="https://images.unsplash.com/photo-1607706189992-eae578626c86?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="Technology" class="mb-2">
+                        alt="Technology" class="mb-2 rounded-lg">
                     @elseif ($category->category_name === 'Fitness')
                     <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1975&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="Fitness" class="mb-2">
+                        alt="Fitness" class="mb-2 rounded-lg">
                     @endif
                     <p>{{ Str::limit($category->category_description, 200) }}</p>
-                   <a href="{{ route('category.show', $category->id) }}" class="see-more">
+                    <a href="{{ route('category.show', $category->id) }}" class="see-more">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-down-right"
                             viewBox="0 0 24 24">
@@ -54,7 +55,7 @@
                 <div class="blog-right-title">
                     Featured Articles
                 </div>
-                <div class="blog-menu rounded"><a href={{ route('article') }}>See All</a></div>
+                {{-- <div class="blog-menu rounded"><a href={{ route('article') }}>See All</a></div> --}}
             </div>
             <div class="blog-right">
                 @foreach ($posts as $post)

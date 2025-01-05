@@ -27,7 +27,7 @@ new #[Layout('layouts.guest')] class extends Component
 <div>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    {{-- <canvas id="fluid"></canvas> --}}
+    <canvas id="fluid"></canvas>
     <form wire:submit="login">
         <!-- Email Address -->
         <div>

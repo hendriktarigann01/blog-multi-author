@@ -10,8 +10,9 @@
                 <div class="blog-big__title">Article</div>
                 <div class="small-title"></div>
             </div>
-            <div class="blog-article page-number">
-                NO. 01
+            <div class="items-center page-number">
+                <img src="https://user-images.githubusercontent.com/5713670/87202985-820dcb80-c2b6-11ea-9f56-7ec461c497c3.gif"
+                    width="100px" height="100px" class="animate-floatBounce hidden">
             </div>
         </div>
         <div class="blog-header-container">
@@ -54,7 +55,6 @@
                 <div class="blog-right-title">
                     Featured Articles
                 </div>
-                <div class="blog-menu rounded"><a href={{ route('article') }}>See All</a></div>
             </div>
             <div class="blog-right">
                 @foreach ($posts as $post)
