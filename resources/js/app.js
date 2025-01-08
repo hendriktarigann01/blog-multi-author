@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeIcon = document.getElementById("close-icon");
     const navigation = document.getElementById("navigation");
 
+    // Handle open menu
     menuIcon.addEventListener("click", () => {
         menuIcon.classList.add("hidden");
         closeIcon.classList.remove("hidden");
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         navigation.classList.remove("hidden");
     });
 
+    // Handle close menu
     closeIcon.addEventListener("click", () => {
         closeIcon.classList.add("hidden");
         menuIcon.classList.remove("hidden");
@@ -23,4 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
         navigation.classList.add("hidden");
     });
 });
+
+
 

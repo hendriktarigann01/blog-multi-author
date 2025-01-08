@@ -19,23 +19,20 @@
             @foreach ($categories as $category)
             @if ($loop->first)
             <div class="bar flex justify-center items-center m-auto">
-                <svg  viewBox="0 -0.5 25 25" fill="none"
+                <svg id="menu-icon" class="icon-open" width="32px" height="32px" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M5.5 7.75C5.08579 7.75 4.75 8.08579 4.75 8.5C4.75 8.91421 5.08579 9.25 5.5 9.25V7.75ZM19.5 9.25C19.9142 9.25 20.25 8.91421 20.25 8.5C20.25 8.08579 19.9142 7.75 19.5 7.75V9.25ZM5.5 11.75C5.08579 11.75 4.75 12.0858 4.75 12.5C4.75 12.9142 5.08579 13.25 5.5 13.25V11.75ZM17.5 13.25C17.9142 13.25 18.25 12.9142 18.25 12.5C18.25 12.0858 17.9142 11.75 17.5 11.75V13.25ZM5.5 15.75C5.08579 15.75 4.75 16.0858 4.75 16.5C4.75 16.9142 5.08579 17.25 5.5 17.25V15.75ZM12.5 17.25C12.9142 17.25 13.25 16.9142 13.25 16.5C13.25 16.0858 12.9142 15.75 12.5 15.75V17.25ZM5.5 9.25H19.5V7.75H5.5V9.25ZM5.5 13.25H17.5V11.75H5.5V13.25ZM5.5 17.25H12.5V15.75H5.5V17.25Z"
-                        fill="#000000" />
+                    <path d="M4 6H20M4 12H20M4 18H20" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-                <svg id="close-icon" class="icon-close hidden" xmlns="http://www.w3.org/2000/svg" width="30px"
-                    height="30px" viewBox="0 0 24 24" fill="none">
-                    <path d="M6 6L18 18M6 18L18 6" stroke="#000" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
+
+                <svg id="close-icon" class="icon-close hidden" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px"
+                    viewBox="0 0 24 24" fill="none">
+                    <path d="M6 6L18 18M6 18L18 6" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </div>
             <div id="navigation" class="hidden">
                 <livewire:navbar.navigation />
             </div>
             @endif
-
             <div class="blog-header">
                 <div class="blog-article header-article">
                     <div class="title-mobile">Category</div>
