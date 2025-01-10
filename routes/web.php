@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ViewPostController;
+use App\Livewire\Text\RunningText;
 use App\Livewire\Posts\CreatePost;
 use App\Http\Controllers\CategoryController;
 use App\Livewire\Category\CategoryDetail;
@@ -15,8 +16,6 @@ Route::get('/', function () {
     return view('home', compact('categories', 'posts'));
 })->name('home');
 Route::get('/home/{id}', CategoryDetail::class)->name('category.show');
-
-
 
 Route::get('dashboard', [ViewPostController::class, 'index'])
     ->middleware(['auth', 'verified'])
@@ -37,5 +36,6 @@ Route::get('/create', CreatePost::class)->middleware(['auth'])->name('posts.crea
 
 Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->name('posts.dashboard');
 
+Route::get('running-text', RunningText::class)->name('running-text');
 
 require __DIR__ . '/auth.php';

@@ -8,7 +8,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all(); // Mengambil semua data
+        $categories = Category::all(); 
         return view('home', compact('categories'));
     }
 }
