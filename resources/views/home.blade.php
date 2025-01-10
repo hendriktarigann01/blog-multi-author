@@ -62,16 +62,12 @@
             @endforeach
         </div>
         <div class="blog-part right-blog">
-            <marquee width="100%" direction="left">
-                <span>Now And Then You Miss It Sounds Make You Cry</span>
-                <span>Now In - MoMa Sharing Exhibition NOW</span>
-                <span>NYC Opens After Long Lockdown Check</span>
-            </marquee>
+           <livewire:text.running-text />
             <div class="blog-right-title-container">
                 <div class="blog-right-title">
                     Featured Articles
                 </div>
-                {{-- <div class="blog-menu rounded"><a href={{ route('article') }}>See All</a></div> --}}
+                <div class="blog-menu rounded hover:text-cyan-800"><a href={{ route('article') }}>See All</a></div>
             </div>
             <div class="blog-right">
                 @foreach ($posts as $post)
