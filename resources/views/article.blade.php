@@ -12,7 +12,7 @@
             </div>
             <div class="items-center page-number">
                 <img src="https://user-images.githubusercontent.com/5713670/87202985-820dcb80-c2b6-11ea-9f56-7ec461c497c3.gif"
-                    width="100px" height="100px" class="animate-floatBounce hidden">
+                    width="100px" height="100px" class="animate-floatBounce">
             </div>
         </div>
         <div class="blog-header-container">
@@ -64,11 +64,7 @@
         </div>
 
         <div class="blog-part right-blog">
-            <marquee width="100%" direction="left">
-                <span>Now And Then You Miss It Sounds Make You Cry</span>
-                <span>Now In - MoMa Sharing Exhibition NOW</span>
-                <span>NYC Opens After Long Lockdown Check</span>
-            </marquee>
+            <livewire:text.running-text />
             <div class="blog-right-title-container">
                 <div class="blog-right-title">
                     Featured Articles
@@ -85,11 +81,11 @@
                     <div class="blog-right-page-subtitle">{{ Str::limit($post->post_description, 100) }}</div>
                 </div>
                 @endforeach
-                <div class="circle">
+                {{-- <div class="circle">
                     <div class="circle-title">Don't Worry About What Other People Think</div>
                     <div class="circle-subtitle">let it go. be unique, memorable, confident, but mainly be you</div>
                     <div class="circle-footer">© 2024 Hendrik. All Rights Reserved</div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
