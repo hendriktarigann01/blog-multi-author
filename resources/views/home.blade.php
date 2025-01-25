@@ -10,9 +10,20 @@
                 <div class="blog-big__title">Category</div>
                 <div class="small-title"></div>
             </div>
-            <div class="items-center page-number">
-                <img src="https://user-images.githubusercontent.com/5713670/87202985-820dcb80-c2b6-11ea-9f56-7ec461c497c3.gif"
-                    width="100px" height="100px" class="animate-floatBounce">
+            <div class="newest">
+                {{-- <img
+                    src="https://user-images.githubusercontent.com/5713670/87202985-820dcb80-c2b6-11ea-9f56-7ec461c497c3.gif"
+                    width="100px" height="100px" class="animate-floatBounce"> --}}
+                <div class="newest-header mb-0 md:mb-5 mx-5">New Articles</div>
+                    @foreach ($newestPosts as $post)
+                    <div class="my-10 text-justify mx-5">
+                        <div class="flex justify-between">
+                            <div class="newest-title">{{ $post->post_title }}</div>
+                            <div class="newest-date">{{ $post->created_at->format('d.m.Y') }}</div>
+                        </div>
+                        <div class="newest-description">{{ Str::limit($post->post_description, 100) }}</div>
+                    </div>
+                    @endforeach
             </div>
         </div>
         <div class="blog-header-container">
@@ -21,12 +32,14 @@
             <div class="bar flex justify-center items-center m-auto">
                 <svg id="menu-icon" class="icon-open" width="32px" height="32px" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 6H20M4 12H20M4 18H20" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M4 6H20M4 12H20M4 18H20" stroke="#000" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
                 </svg>
 
-                <svg id="close-icon" class="icon-close hidden" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px"
-                    viewBox="0 0 24 24" fill="none">
-                    <path d="M6 6L18 18M6 18L18 6" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                <svg id="close-icon" class="icon-close hidden" xmlns="http://www.w3.org/2000/svg" width="32px"
+                    height="32px" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 6L18 18M6 18L18 6" stroke="#000" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
                 </svg>
             </div>
             <div id="navigation" class="hidden">
@@ -62,7 +75,7 @@
             @endforeach
         </div>
         <div class="blog-part right-blog">
-           <livewire:text.running-text />
+            <livewire:text.running-text />
             <div class="blog-right-title-container">
                 <div class="blog-right-title">
                     Featured Articles
@@ -80,11 +93,6 @@
                     <div class="blog-right-page-subtitle">{{ Str::limit($post->post_description, 100) }}</div>
                 </div>
                 @endforeach
-                <div class="circle">
-                    <div class="circle-title">Don't Worry About What Other People Think</div>
-                    <div class="circle-subtitle">let it go. be unique, memorable, confident, but mainly be you</div>
-                    <div class="circle-footer">© 2024 Hendrik. All Rights Reserved</div>
-                </div>
             </div>
         </div>
     </div>

@@ -210,21 +210,44 @@ body {
     }
 }
 
-.page-number {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+.newest {
+    display: block;
     height: 100%;
-    font-size: 72px;
-    text-align: center;
-    letter-spacing: -3px;
+    font-size: 12px;
     font-weight: lighter;
-    font-family: $title-font;
     border-right: 1px solid $border-color;
     white-space: nowrap;
+     overflow-y: auto;
 
     @media screen and (max-width: 1260px) {
         font-size: 5vw;
+    }
+
+    &-header {
+        font-size: 25px;
+        font-family: $italic-font;
+    }
+
+    &-title {
+        font-family: $title-font;
+        font-size: 28px;
+        font-weight: 600;
+        max-width: 16ch;
+        letter-spacing: -2px;
+    }
+
+    &-date {
+        font-size: 15px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+    }
+
+    &-description {
+        font-size: 15px;
+        margin-top: 12px;
+        word-wrap: break-word;
+        white-space: normal;
     }
 }
 
@@ -331,17 +354,18 @@ body {
     visibility: hidden;
     transform: translateX(100%);
     pointer-events: none;
-    transition: transform 1s ease-in-out, opacity 0.3s ease, visibility 0.3s ease;
+    transition: transform 1s ease-in-out, opacity 0.3s ease,
+        visibility 0.3s ease;
 }
 
 .visible {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
-    pointer-events: all; /* Mengaktifkan interaksi ketika navbar terlihat */
-    transition: transform 1s ease-in-out, opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: all;
+    transition: transform 1s ease-in-out, opacity 0.3s ease,
+        visibility 0.3s ease;
 }
-
 
 @media screen and (min-width: 769px) {
     .bar {
