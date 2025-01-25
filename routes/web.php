@@ -13,7 +13,8 @@ use App\Livewire\Posts\PostDetail;
 Route::get('/', function () {
     $categories = app(CategoryController::class)->index()->getData()['categories'];
     $posts = app(PostController::class)->index()->getData()['posts'];
-    return view('home', compact('categories', 'posts'));
+    $newestPosts = app(PostController::class)->newPosts()->getData()['newestPosts'];
+    return view('home', compact('categories', 'posts', 'newestPosts'));
 })->name('home');
 Route::get('/home/{id}', CategoryDetail::class)->name('category.show');
 
