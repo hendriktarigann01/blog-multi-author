@@ -36,9 +36,9 @@
                             <img class="card-img-top size-60" src="{{ url('images/posts/' . $post->post_image) }}"
                                 alt="{{ $post->post_title }}">
                             <div class="card-body">
-                                <h5 class="card-title text-xl font-semibold">{{ $post->post_title }}</h5>
-                                <p class="card-text">{{ $post->post_description }}</p>
-                                <a href="#" class="btn btn-primary bg-blue-500py-2 px-4 rounded">
+                                <h5 class="my-2 card-title text-xl font-semibold">{{ $post->post_title }}</h5>
+                                <p class="my-2 card-text">{{ $post->post_description }}</p>
+                                <a href="#" class="mt-4 border border-[#94918f] py-2 px-4 rounded">
                                     Read More
                                 </a>
                             </div>
