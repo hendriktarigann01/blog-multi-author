@@ -40,10 +40,10 @@ class PostController extends Controller
         return view('home', compact('posts'));
     }
 
-    public function newPosts()
+    public function newPosts($view = 'home')
     {
         $newestPosts = Post::orderBy('created_at', 'desc')->limit(5)->get();
-        return view('home', compact('newestPosts'));
+        return view($view, compact('newestPosts'));
     }
 
     public function show()

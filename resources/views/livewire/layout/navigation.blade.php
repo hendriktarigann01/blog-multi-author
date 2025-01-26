@@ -16,7 +16,7 @@ new class extends Component
     }
 }; ?>
 
-<nav x-data="{ open: false }" class="bg-[#e9e6e4] border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-[#e9e6e4] border-b border-gray-100 rounded-lg mt-5 mx-8">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -42,7 +42,8 @@ new class extends Component
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
-                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-cyan-800 bg-white hover:text-cyan-600 focus:outline-none transition ease-in-out duration-150">
+                            class="inline-flex gap-x-2 items-center px-3 py-2 border border-[#94918f] text-sm leading-4 font-medium rounded-md text-cyan-800 hover:text-cyan-600 focus:outline-none transition ease-in-out duration-150">
+                            <i class="fa-solid fa-user"></i>
                             <div x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name"
                                 x-on:profile-updated.window="name = $event.detail.name"></div>
                             <div class="ms-1">

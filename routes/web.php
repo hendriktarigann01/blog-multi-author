@@ -26,7 +26,11 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::get('/article', [PostController::class, 'show'])->name('article');
+Route::get('/article', function () {
+    $posts = app(PostController::class)->show()->getData()['posts'];
+    $newestPosts = app(PostController::class)->newPosts()->getData()['newestPosts'];
+    return view('article', compact('posts', 'newestPosts'));
+})->name('article');
 Route::get('/article/{id}', PostDetail::class)->name('posts.show');
 
 Route::view('contact', 'contact')->name('contact');

@@ -10,9 +10,17 @@
                 <div class="blog-big__title">Article</div>
                 <div class="small-title"></div>
             </div>
-            <div class="items-center page-number">
-                <img src="https://user-images.githubusercontent.com/5713670/87202985-820dcb80-c2b6-11ea-9f56-7ec461c497c3.gif"
-                    width="100px" height="100px" class="animate-floatBounce">
+             <div class="newest">
+                <div class="newest-header mb-0 md:mb-5 mx-5">New Articles</div>
+                    @foreach ($newestPosts as $post)
+                    <div class="my-10 text-justify mx-5">
+                        <div class="flex justify-between">
+                            <div class="newest-title">{{ $post->post_title }}</div>
+                            <div class="newest-date">{{ $post->created_at->format('d.m.Y') }}</div>
+                        </div>
+                        <div class="newest-description">{{ Str::limit($post->post_description, 100) }}</div>
+                    </div>
+                    @endforeach
             </div>
         </div>
         <div class="blog-header-container">
