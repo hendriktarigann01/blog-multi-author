@@ -50,7 +50,7 @@
                     <div class="small-title"></div>
                 </div>
                 <div class="blog-article">
-                    <img src="{{ url('images/posts/' . $post->post_image) }}" alt="Image Post" class="mb-2 shadow-lg">
+                    <img src="{{ url('images/posts/' . $post->post_image) }}" alt="Image Post" class="mb-2 shadow-lg w-full">
                     <p>{{ Str::limit($post->post_description, 200) }}</p>
                     <a href="{{ route('posts.show', $post->id) }}" class="see-more">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"

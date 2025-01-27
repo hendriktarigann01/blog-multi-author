@@ -14,23 +14,33 @@ class PostController extends Controller
         $validated = $request->validate([
             'post_title' => 'required|string|max:255',
             'post_category_id' => 'required|string|max:255',
-            'post_content' => 'required|string',
             'post_description' => 'required|string',
             'post_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        // Handle file upload
         if ($request->hasFile('post_image')) {
             $imageName = time() . '.' . $request->post_image->extension();
             $request->post_image->move(public_path('images/posts'), $imageName);
             $validated['post_image'] = $imageName;
         } else {
-            $validated['post_image'] = null; // Jika tidak ada gambar, biarkan null
+            $validated['post_image'] = null;
         }
 
         $validated['post_users_id'] = Auth::id();
 
-        Post::create($validated);
+        $post = Post::create($validated);
 
+        // Check if the request is an AJAX request
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Post created successfully!',
+                'post' => $post,
+            ]);
+        }
+
+        // Fallback for non-AJAX requests
         return redirect()->route('dashboard')->with('success', 'Post created successfully!');
     }
 
