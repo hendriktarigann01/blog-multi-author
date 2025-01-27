@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-user-layout>
     <div
         class="bg-[#e9e6e4] w-full h-screen md:h-auto px-5 sm:px-10 md:px-20 lg:px-40 py-10 sm:py-16 md:py-20 text-cyan-800 justify-center overflow-y-auto">
         <div class="flex justify-center items-center">
@@ -16,8 +16,19 @@
         </div>
         <div class="flex justify-center md:justify-start">
             <img src="{{ url('images/posts/' . $post->post_image) }}" alt="Post Image"
-                class="rounded my-10 w-80 h-80 md:w-72 md:h-72">
+                class="rounded my-10 w-full object-cover h-96 cursor-pointer" @click="
+                console.log('Image clicked');
+                $dispatch('open-modal', { detail: 'view-image-modal' });
+            ">
         </div>
-        <p class="text-justify text-sm sm:text-base md:text-lg leading-relaxed mx-5 md:mx-0">{{ $post->post_description}}</p>
+
+        <x-modal name="view-image-modal" :show="false" maxWidth="2xl">
+            <div class="flex justify-center">
+                <img src="{{ url('images/posts/' . $post->post_image) }}" alt="Full Image"
+                    class="rounded w-full object-cover">
+            </div>
+        </x-modal>
+        <p class="text-justify text-sm sm:text-base md:text-lg leading-relaxed mx-5 md:mx-0">{{
+            $post->post_description}}</p>
     </div>
-</x-app-layout>
+</x-user-layout>

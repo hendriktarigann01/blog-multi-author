@@ -12,7 +12,6 @@ class ViewPostController extends Controller
     {
         // Ambil data post berdasarkan pengguna yang login
         $posts = Post::where('post_users_id', Auth::id())->get();
-
         return view('dashboard', compact('posts'));
     }
 }

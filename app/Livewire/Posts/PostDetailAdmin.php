@@ -9,13 +9,13 @@ class PostDetailAdmin extends Component
 {
     public $post;
 
-    public function mount()
+    public function mount($id)
     {
-        $this->post = Post::findOrFail($this->post);
+        $this->post = Post::findOrFail($id);
     }
 
     public function render()
     {
-        return view('livewire.posts.post-detail-admin');
+        return view('livewire.posts.post-detail-admin')->layout('layouts.livewire');
     }
 }

@@ -38,7 +38,7 @@
                             <div class="card-body">
                                 <h5 class="my-2 card-title text-xl font-semibold">{{ $post->post_title }}</h5>
                                 <p class="my-2 card-text">{{ $post->post_description }}</p>
-                                <a href="#" class="mt-4 border border-[#94918f] py-2 px-4 rounded">
+                                <a href="{{ route('posts.detailAdmin', $post->id) }}" class="mt-4 border border-[#94918f] py-2 px-4 rounded">
                                     Read More
                                 </a>
                             </div>
