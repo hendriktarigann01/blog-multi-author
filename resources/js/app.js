@@ -26,11 +26,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* Handle Drag & Drop Create Post */
-const fileInput = document.getElementById("post_image");
-const uploadText = document.getElementById("upload-text");
-const uploadSubtext = document.getElementById("upload-subtext");
-const dropArea = document.getElementById("drop-area");
-const loadingArea = document.getElementById("loading-area");
+const fileInputs = [
+    {
+        fileInput: document.getElementById("post_image"),
+        uploadText: document.getElementById("upload-text"),
+        uploadSubtext: document.getElementById("upload-subtext"),
+        dropArea: document.getElementById("drop-area"),
+        loadingArea: document.getElementById("loading-area")
+    },
+    {
+        fileInput: document.getElementById("new_image"),
+        uploadText: document.getElementById("new-upload-text"),
+        uploadSubtext: document.getElementById("new-upload-subtext"),
+        dropArea: document.getElementById("new-drop-area"),
+        loadingArea: document.getElementById("new-loading-area")
+    }
+];
 
 // Function to simulate upload delay
 const calculateUploadTime = (fileSize) => {
@@ -40,9 +51,8 @@ const calculateUploadTime = (fileSize) => {
     return Math.max(baseTime, sizeInMB * sizeFactor);
 };
 
-// Update text and show animation when file is selected
-fileInput.addEventListener("change", (event) => {
-    const file = event.target.files[0];
+// Function to handle file upload process
+const handleFileUpload = (fileInput, uploadText, uploadSubtext, loadingArea, file) => {
     if (file) {
         uploadText.textContent = "";
         uploadSubtext.textContent = "";
@@ -61,24 +71,33 @@ fileInput.addEventListener("change", (event) => {
             uploadSubtext.textContent = "File uploaded successfully!";
         }, uploadTime);
     }
-});
+};
 
-// Handle drag-and-drop
-dropArea.addEventListener("dragover", (event) => {
-    event.preventDefault();
-    dropArea.classList.add("bg-[#d5d2cf]");
-});
+// Add event listeners for each file input
+fileInputs.forEach(({ fileInput, uploadText, uploadSubtext, dropArea, loadingArea }) => {
+    // Handle file selection
+    fileInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        handleFileUpload(fileInput, uploadText, uploadSubtext, loadingArea, file);
+    });
 
-dropArea.addEventListener("dragleave", () => {
-    dropArea.classList.remove("bg-[#d5d2cf]");
-});
+    // Handle drag-and-drop
+    dropArea.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        dropArea.classList.add("bg-[#d5d2cf]");
+    });
 
-dropArea.addEventListener("drop", (event) => {
-    event.preventDefault();
-    dropArea.classList.remove("bg-[#d5d2cf]");
-    const file = event.dataTransfer.files[0];
-    if (file) {
-        fileInput.files = event.dataTransfer.files; // Assign file to input
-        fileInput.dispatchEvent(new Event("change")); // Trigger change event
-    }
+    dropArea.addEventListener("dragleave", () => {
+        dropArea.classList.remove("bg-[#d5d2cf]");
+    });
+
+    dropArea.addEventListener("drop", (event) => {
+        event.preventDefault();
+        dropArea.classList.remove("bg-[#d5d2cf]");
+        const file = event.dataTransfer.files[0];
+        if (file) {
+            fileInput.files = event.dataTransfer.files; // Assign file to input
+            fileInput.dispatchEvent(new Event("change")); // Trigger change event
+        }
+    });
 });

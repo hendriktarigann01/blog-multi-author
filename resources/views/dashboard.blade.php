@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-[#e9e6e4] text-cyan-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="flex justify-between items-center mx-20 border-b border-[#94918f]">
+                <div class="flex justify-between items-center mx-20 border-b-2 border-[#94918f]">
                     <div class="flex p-6">
                         {{ __("You're logged in!") }}
                     </div>
@@ -37,7 +37,7 @@
                                 alt="{{ $post->post_title }}">
                             <div class="card-body">
                                 <h5 class="my-2 card-title text-xl font-semibold">{{ $post->post_title }}</h5>
-                                <p class="my-2 card-text">{{ $post->post_description }}</p>
+                                <p class="my-2 card-text text-justify">{{ Str::limit($post->post_description, 150) }}</p>
                                 <a href="{{ route('posts.detailAdmin', $post->id) }}" class="mt-4 border border-[#94918f] py-2 px-4 rounded">
                                     Read More
                                 </a>

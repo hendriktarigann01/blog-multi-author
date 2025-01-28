@@ -8,7 +8,7 @@ use App\Models\Category;
 
 class CreatePost extends Component
 {
-    public $categories; // Tambahkan properti
+    public $categories; 
 
     public function mount()
     {

@@ -23,36 +23,36 @@
                         @csrf
                         <div class="mb-4">
                             <label for="post_title" class="block text-sm font-medium">
-                                Judul Post
+                                Post Title
                             </label>
                             <input type="text" name="post_title" id="post_title" required
-                                class="mt-2 text-cyan-800 block w-full rounded-md shadow-sm border-[#94918f] focus:ring-cyan-800 focus:border-cyan-800">
+                                class="mt-2 text-cyan-800 bg-transparent block w-full rounded-md shadow-sm border-[#94918f] focus:ring-cyan-800 focus:border-cyan-800">
                         </div>
 
                         <div class="mb-4">
                             <label for="post_category_id" class="block text-sm font-medium">
                                 Category
                             </label>
-                            <select wire:model="post_category_id" id="post_category_id" name="post_category_id"
-                                class="mt-2 text-cyan-800 block w-full rounded-md shadow-sm border-[#94918f] focus:ring-cyan-800 focus:border-cyan-800">
-                                <option value="">Select a category</option>
+                          <select wire:model="post_category_id" id="post_category_id" name="post_category_id"
+                            class="mt-2 text-cyan-800 bg-transparent block w-full rounded-md shadow-sm border-[#94918f] focus:ring-cyan-800 focus:border-cyan-800 appearance-none">
+                                <option value="" class="bg-[#e9e6e4] hover:bg-[#d5d2cf] appearance-none">Select a category</option>
                                 @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                <option value="{{ $category->id }}" class="bg-[#e9e6e4] hover:bg-[#d5d2cf] appearance-none">{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="mb-4">
                             <label for="post_description" class="block text-sm font-medium">
-                                Deskripsi Post
+                                Post Description
                             </label>
                             <textarea name="post_description" id="post_description" rows="3" required
-                                class="mt-2 text-cyan-800 block w-full rounded-md shadow-sm border-[#94918f] focus:ring-cyan-800 focus:border-cyan-800"></textarea>
+                                class="mt-2 text-cyan-800 bg-transparent block w-full rounded-md shadow-sm border-[#94918f] focus:ring-cyan-800 focus:border-cyan-800"></textarea>
                         </div>
 
                         <div class="mb-4">
                             <label for="post_image" class="block text-sm font-medium">
-                                Image Post
+                                Post Image
                             </label>
                             <div class="mt-2 flex items-center justify-center w-full">
                                 <label for="post_image" id="drop-area"

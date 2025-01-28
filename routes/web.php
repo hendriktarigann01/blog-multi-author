@@ -7,6 +7,7 @@ use App\Http\Controllers\ViewPostController;
 use App\Livewire\Text\RunningText;
 use App\Livewire\Posts\CreatePost;
 use App\Livewire\Posts\PostDetailAdmin;
+use App\Livewire\Posts\PostEditAdmin;
 use App\Http\Controllers\CategoryController;
 use App\Livewire\Category\CategoryDetail;
 use App\Livewire\Posts\PostDetail;
@@ -23,6 +24,7 @@ Route::get('dashboard', [ViewPostController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 Route::get('/dashboard/{id}', PostDetailAdmin::class)->name('posts.detailAdmin');
+Route::get('/dashboard/{id}/edit', PostEditAdmin::class)->name('posts.edit');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
