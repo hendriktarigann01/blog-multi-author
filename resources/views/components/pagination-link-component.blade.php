@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-<nav class="flex items-center justify-center mt-5 sm:mt-0" aria-label="Pagination">
+<nav class="flex items-center gap-x-2 justify-center mt-5 sm:mt-0" aria-label="Pagination">
     {{-- Tombol "First" --}}
     @if ($paginator->onFirstPage())
     <button type="button"
