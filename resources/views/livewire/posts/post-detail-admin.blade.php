@@ -13,19 +13,26 @@
                         <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold">{{ $post->post_title }}</p>
                         <a href="{{ route('dashboard') }}">
                             <button
-                                class="flex border border-[#94918f] text-[#94918f] justify-center items-center w-10 h-10 rounded">
+                                class="flex border border-[#94918f] text-[#94918f] justify-center items-center w-10 h-10 rounded hover:border-cyan-800 hover:text-cyan-800 transition duration-200">
                                 <i class="fa-solid fa-angles-left"></i>
                             </button>
                         </a>
                     </div>
-                    <div
-                        class="flex flex-col sm:flex-row justify-between items-center sm:items-start my-4 sm:my-6 md:my-8">
-                        <p class="italic font-medium text-sm sm:text-base md:text-lg mb-2 sm:mb-0">{{ $post->created_at
-                            }}</p>
-                        <a href="{{ route('posts.edit', $post->id) }}" class="relative mt-2 sm:mt-0">
+                    <div class="flex justify-between mt-10">
+                        <div class="flex items-center justify-center">
+                            <p>Created at: {{
+                                \Carbon\Carbon::parse($post->created_at)->timezone('Asia/Jakarta')->format('d
+                                M Y H:i') }}</p>
+                            <i class="fa-solid fa-arrow-right-long mx-2"></i>
+                            <p>Updated at: {{
+                                \Carbon\Carbon::parse($post->updated_at)->timezone('Asia/Jakarta')->format('d
+                                M Y H:i') }}</p>
+                        </div>
+
+                        <a href="{{ route('posts.update', $post->id) }}" class="relative mt-2 sm:mt-0">
                             <button
-                                class="inline-flex items-center px-4 py-2 bg-cyan-800 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest hover:bg-cyan-800 focus:outline-none focus:ring focus:ring-cyan-800 dark:focus:ring-cyan-800">
-                                Edit
+                               class="flex border border-[#94918f] text-[#94918f] justify-center items-center w-10 h-10 rounded hover:border-cyan-800 hover:text-cyan-800 transition duration-200">
+                                <i class="fa-solid fa-pen-to-square"></i>
                             </button>
                         </a>
                     </div>
