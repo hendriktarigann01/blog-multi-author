@@ -7,6 +7,7 @@ use Livewire\WithFileUploads;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class PostEditAdmin extends Component
 {
@@ -18,46 +19,64 @@ class PostEditAdmin extends Component
     public $post_description;
     public $post_image;
     public $new_image;
+    public $categories;
 
     public function mount($id)
     {
         $this->post = Post::findOrFail($id);
         $this->post_title = $this->post->post_title;
-        $this->post_category_id =  Category::all();
+        $this->post_category_id = $this->post->post_category_id;
         $this->post_description = $this->post->post_description;
         $this->post_image = $this->post->post_image;
+        $this->categories = Category::all();
     }
 
-    public function editPost()
+
+    public function update(Request $request, $id)
     {
-        $this->validate([
+        $request->validate([
             'post_title' => 'required|string|max:255',
             'post_description' => 'required|string',
-            'post_category_id' => 'required|string|max:255',
+            'post_category_id' => 'required|integer|exists:category,id',
             'new_image' => 'nullable|image|max:2048',
         ]);
 
-        // Hapus gambar lama jika ada gambar baru
-        if ($this->new_image) {
-            if ($this->post->post_image && Storage::exists('images/posts/' . $this->post->post_image)) {
-                Storage::delete('images/posts/' . $this->post->post_image);
+        $post = Post::findOrFail($id);
+
+        // Jika ada gambar baru, hapus yang lama dan simpan yang baru
+        if ($request->hasFile('new_image')) {
+            // Hapus gambar lama jika ada
+            if ($post->post_image && file_exists(public_path('images/posts/' . $post->post_image))) {
+                unlink(public_path('images/posts/' . $post->post_image));
             }
 
-            // Simpan gambar baru
-            $newImageName = $this->new_image->store('images/posts', 'public');
-            $this->post->update(['post_image' => $newImageName]);
+            // Simpan gambar baru ke folder public/images/posts
+            $image = $request->file('new_image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension(); // Gunakan timestamp untuk nama unik
+            $image->move(public_path('images/posts'), $imageName); // Simpan ke folder
+
+            $post->post_image = $imageName; // Simpan hanya nama file ke database
         }
 
-        // Update data lainnya
-        $this->post->update([
-            'post_title' => $this->post_title,
-            'post_category_id' => $this->post_category_id,
-            'post_description' => $this->post_description,
+        // Update post
+        $post->update([
+            'post_title' => $request->post_title,
+            'post_category_id' => $request->post_category_id,
+            'post_description' => $request->post_description,
         ]);
 
-        session()->flash('message', 'Post updated successfully.');
-        return redirect()->route('posts.detailAdmin', $this->post->id);
+        return redirect()->route('posts.edit', ['id' => $post->id])->with('message', 'Post updated successfully.');
     }
+
+
+    public function edit($id)
+    {
+        $post = Post::findOrFail($id);
+        $categories = Category::all();
+
+        return view('livewire.posts.post-edit-admin', compact('post', 'categories'));
+    }
+
 
     public function render()
     {
