@@ -33,11 +33,14 @@
                             <label for="post_category_id" class="block text-sm font-medium">
                                 Category
                             </label>
-                          <select wire:model="post_category_id" id="post_category_id" name="post_category_id"
-                            class="mt-2 text-cyan-800 bg-transparent block w-full rounded-md shadow-sm border-[#94918f] focus:ring-cyan-800 focus:border-cyan-800 appearance-none">
-                                <option value="" class="bg-[#e9e6e4] hover:bg-[#d5d2cf] appearance-none">Select a category</option>
+                            <select wire:model="post_category_id" id="post_category_id" name="post_category_id"
+                                class="mt-2 text-cyan-800 bg-transparent block w-full rounded-md shadow-sm border-[#94918f] focus:ring-cyan-800 focus:border-cyan-800 appearance-none">
+                                <option value="" class="bg-[#e9e6e4] hover:bg-[#d5d2cf] appearance-none">Select a
+                                    category</option>
                                 @foreach($categories as $category)
-                                <option value="{{ $category->id }}" class="bg-[#e9e6e4] hover:bg-[#d5d2cf] appearance-none">{{ $category->category_name }}</option>
+                                <option value="{{ $category->id }}"
+                                    class="bg-[#e9e6e4] hover:bg-[#d5d2cf] appearance-none">{{ $category->category_name
+                                    }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -64,8 +67,10 @@
                                                 stroke-width="2"
                                                 d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                         </svg>
-                                        <div id="loading-area" class="hidden flex flex-col items-center justify-center w-full mt-4">
-                                            <img src="/images/assets/pacman.gif" alt="Loading..." class="w-16 h-16 mb-2">
+                                        <div id="loading-area"
+                                            class="hidden flex flex-col items-center justify-center w-full mt-4">
+                                            <img src="/images/assets/pacman.gif" alt="Loading..."
+                                                class="w-16 h-16 mb-2">
                                             <p class="text-sm font-semibold text-cyan-800">Uploading, please wait...</p>
                                         </div>
                                         <p id="upload-text" class="mb-2 text-sm text-cyan-800">
@@ -73,6 +78,10 @@
                                         </p>
                                         <p id="upload-subtext" class="text-xs text-[#94918f]">SVG, PNG, or JPG (MAX.
                                             800x400px)</p>
+                                        <div id="preview-area" class="hidden mt-4">
+                                            <img id="preview-image" src="" alt="Uploaded Image"
+                                                class="max-w-full h-32 rounded-lg shadow-md">
+                                        </div>
                                     </div>
                                     <input id="post_image" name="post_image" type="file" class="hidden">
                                 </label>

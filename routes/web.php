@@ -24,7 +24,8 @@ Route::get('dashboard', [ViewPostController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 Route::get('/dashboard/{id}', PostDetailAdmin::class)->name('posts.detailAdmin');
-Route::get('/dashboard/{id}/edit', PostEditAdmin::class)->name('posts.edit');
+Route::get('/dashboard/{id}/edit', [PostEditAdmin::class, 'edit'])->name('posts.edit'); // Menampilkan form
+Route::post('/dashboard/{id}/edit', [PostEditAdmin::class, 'update'])->name('posts.update'); // Menyimpan perubahan
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
