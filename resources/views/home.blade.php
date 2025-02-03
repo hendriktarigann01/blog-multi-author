@@ -12,15 +12,15 @@
             </div>
             <div class="newest">
                 <div class="newest-header mb-0 md:mb-5 mx-5">New Articles</div>
-                    @foreach ($newestPosts as $post)
-                    <div class="my-10 text-justify mx-5">
-                        <div class="flex justify-between">
-                            <div class="newest-title">{{ $post->post_title }}</div>
-                            <div class="newest-date">{{ $post->created_at->format('d.m.Y') }}</div>
-                        </div>
-                        <div class="newest-description">{{ Str::limit($post->post_description, 100) }}</div>
+                @foreach ($newestPosts as $post)
+                <div class="my-10 text-justify mx-5">
+                    <div class="flex justify-between">
+                        <div class="newest-title">{{ $post->post_title }}</div>
+                        <div class="newest-date">{{ $post->created_at->format('d.m.Y') }}</div>
                     </div>
-                    @endforeach
+                    <div class="newest-description">{{ Str::limit($post->post_description, 100) }}</div>
+                </div>
+                @endforeach
             </div>
         </div>
         <div class="blog-header-container">
@@ -72,7 +72,11 @@
             @endforeach
         </div>
         <div class="blog-part right-blog">
-            <livewire:text.running-text />
+            <marquee width="100%" direction="left">
+                @foreach ($showRunningText as $text)
+                <span>{{ $text->running_text }}</span>
+                @endforeach
+            </marquee>
             <div class="blog-right-title-container">
                 <div class="blog-right-title">
                     Featured Articles

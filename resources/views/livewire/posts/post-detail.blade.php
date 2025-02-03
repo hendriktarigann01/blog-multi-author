@@ -1,4 +1,4 @@
-<x-user-layout>
+<x-app-layout>
     <div
         class="bg-[#e9e6e4] w-full h-screen md:h-auto px-5 sm:px-10 md:px-20 lg:px-40 py-10 sm:py-16 md:py-20 text-cyan-800 justify-center overflow-y-auto">
         <div class="flex justify-center items-center">
@@ -31,4 +31,4 @@
         <p class="text-justify text-sm sm:text-base md:text-lg leading-relaxed mx-5 md:mx-0">{{
             $post->post_description}}</p>
     </div>
-</x-user-layout>
+</x-app-layout>

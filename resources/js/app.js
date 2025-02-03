@@ -36,19 +36,19 @@ const previewImage = document.getElementById("preview-image");
 
 // Function to simulate upload delay
 const calculateUploadTime = (fileSize) => {
-    const baseTime = 3000; // Default
-    const sizeFactor = 500; // Additional
+    const baseTime = 3000;
+    const sizeFactor = 500;
     const sizeInMB = fileSize / (1024 * 1024);
     return Math.max(baseTime, sizeInMB * sizeFactor);
 };
-// Update text and show animation when file is selected
+
 fileInput.addEventListener("change", (event) => {
     const file = event.target.files[0];
     if (file) {
         uploadText.textContent = "";
         uploadSubtext.textContent = "";
         loadingArea.classList.remove("hidden");
-        previewArea.classList.add("hidden"); // Sembunyikan pratinjau saat upload mulai
+        previewArea.classList.add("hidden");
 
         // Baca file sebagai URL
         const reader = new FileReader();
@@ -81,7 +81,7 @@ dropArea.addEventListener("drop", (event) => {
     const file = event.dataTransfer.files[0];
     if (file) {
         fileInput.files = event.dataTransfer.files;
-        fileInput.dispatchEvent(new Event("change")); 
+        fileInput.dispatchEvent(new Event("change"));
     }
 });
 

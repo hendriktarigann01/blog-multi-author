@@ -10,17 +10,17 @@
                 <div class="blog-big__title">Article</div>
                 <div class="small-title"></div>
             </div>
-             <div class="newest">
+            <div class="newest">
                 <div class="newest-header mb-0 md:mb-5 mx-5">New Articles</div>
-                    @foreach ($newestPosts as $post)
-                    <div class="my-10 text-justify mx-5">
-                        <div class="flex justify-between">
-                            <div class="newest-title">{{ $post->post_title }}</div>
-                            <div class="newest-date">{{ $post->created_at->format('d.m.Y') }}</div>
-                        </div>
-                        <div class="newest-description">{{ Str::limit($post->post_description, 100) }}</div>
+                @foreach ($newestPosts as $post)
+                <div class="my-10 text-justify mx-5">
+                    <div class="flex justify-between">
+                        <div class="newest-title">{{ $post->post_title }}</div>
+                        <div class="newest-date">{{ $post->created_at->format('d.m.Y') }}</div>
                     </div>
-                    @endforeach
+                    <div class="newest-description">{{ Str::limit($post->post_description, 100) }}</div>
+                </div>
+                @endforeach
             </div>
         </div>
         <div class="blog-header-container">
@@ -50,7 +50,8 @@
                     <div class="small-title"></div>
                 </div>
                 <div class="blog-article">
-                    <img src="{{ url('images/posts/' . $post->post_image) }}" alt="Image Post" class="mb-2 shadow-lg w-full">
+                    <img src="{{ url('images/posts/' . $post->post_image) }}" alt="Image Post"
+                        class="mb-2 shadow-lg w-full">
                     <p>{{ Str::limit($post->post_description, 200) }}</p>
                     <a href="{{ route('posts.show', $post->id) }}" class="see-more">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
@@ -72,7 +73,11 @@
         </div>
 
         <div class="blog-part right-blog">
-            <livewire:text.running-text />
+            <marquee width="100%" direction="left">
+                @foreach ($showRunningText as $text)
+                <span>{{ $text->running_text }}</span>
+                @endforeach
+            </marquee>
             <div class="blog-right-title-container">
                 <div class="blog-right-title">
                     Featured Articles
@@ -89,11 +94,6 @@
                     <div class="blog-right-page-subtitle">{{ Str::limit($post->post_description, 100) }}</div>
                 </div>
                 @endforeach
-                {{-- <div class="circle">
-                    <div class="circle-title">Don't Worry About What Other People Think</div>
-                    <div class="circle-subtitle">let it go. be unique, memorable, confident, but mainly be you</div>
-                    <div class="circle-footer">© 2024 Hendrik. All Rights Reserved</div>
-                </div> --}}
             </div>
         </div>
     </div>
