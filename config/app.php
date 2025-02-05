@@ -123,4 +123,5 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'cloud_url' => env('CLOUDINARY_URL'),
 ];

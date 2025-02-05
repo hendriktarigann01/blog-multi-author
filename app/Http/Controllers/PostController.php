@@ -6,6 +6,9 @@ use App\Models\Post;
 use App\Models\RunningText;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class PostController extends Controller
 {
@@ -22,9 +25,35 @@ class PostController extends Controller
     private function handleImageUpload(Request $request)
     {
         if ($request->hasFile('post_image')) {
-            $imageName = time() . '.' . $request->post_image->extension();
-            $request->post_image->move(public_path('images/posts'), $imageName);
-            return $imageName;
+            try {
+                if (!config('cloudinary.cloud_url')) {
+                    throw new \Exception("Cloudinary configuration is missing!");
+                }
+
+                $file = $request->file('post_image');
+
+                $originalFilename = $file->getClientOriginalName();
+
+                if ($file->isValid()) {
+                    $upload = Cloudinary()->upload($file->getRealPath(), [
+                        'folder' => 'blog-multi-author',
+                    ]);
+
+                    $publicId = $upload->getPublicId();
+                    $imageUrl = $upload->getSecurePath();
+
+                    return [
+                        'url' => $imageUrl,
+                        'public_id' => $publicId,
+                        'original_filename' => $originalFilename,
+                    ];
+                }
+
+                return null;
+            } catch (\Exception $e) {
+                Log::error($e->getMessage());
+                return null;
+            }
         }
 
         return null;
@@ -47,8 +76,13 @@ class PostController extends Controller
     {
         $validated = $this->validateRequest($request);
 
-        // Handle file upload
-        $validated['post_image'] = $this->handleImageUpload($request);
+        $imageData = $this->handleImageUpload($request);
+
+        if ($imageData) {
+            $validated['post_image_url'] = $imageData['url'];
+            $validated['post_image_public_id'] = $imageData['public_id'];
+            $validated['post_image'] = $imageData['original_filename'];
+        }
 
         $validated['post_users_id'] = Auth::id();
 
