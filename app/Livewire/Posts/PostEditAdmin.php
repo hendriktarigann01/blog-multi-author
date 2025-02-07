@@ -38,24 +38,37 @@ class PostEditAdmin extends Component
             'post_title' => 'required|string|max:255',
             'post_description' => 'required|string',
             'post_category_id' => 'required|integer|exists:category,id',
-            'new_image' => 'nullable|image|max:2048',
+            'new_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $post = Post::findOrFail($id);
 
-        // Jika ada gambar baru, hapus yang lama dan simpan yang baru
+        // Jika ada gambar baru, hapus yang lama dari Cloudinary dan simpan yang baru
         if ($request->hasFile('new_image')) {
-            // Hapus gambar lama jika ada
-            if ($post->post_image && file_exists(public_path('images/posts/' . $post->post_image))) {
-                unlink(public_path('images/posts/' . $post->post_image));
+            try {
+                if (!config('cloudinary.cloud_url')) {
+                    throw new \Exception("Cloudinary configuration is missing!");
+                }
+
+                // Hapus gambar lama dari Cloudinary jika ada
+                if (!empty($post->post_image_public_id)) {
+                    Cloudinary()->destroy($post->post_image_public_id);
+                }
+
+                // Upload gambar baru ke Cloudinary
+                $file = $request->file('new_image');
+                $originalFilename = $file->getClientOriginalName();
+                $upload = Cloudinary()->upload($file->getRealPath(), [
+                    'folder' => 'blog-multi-author',
+                ]);
+
+                // Simpan data gambar baru
+                $post->post_image = $originalFilename;
+                $post->post_image_url = $upload->getSecurePath();
+                $post->post_image_public_id = $upload->getPublicId();
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Failed to upload image.');
             }
-
-            // Simpan gambar baru ke folder public/images/posts
-            $image = $request->file('new_image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension(); // Gunakan timestamp untuk nama unik
-            $image->move(public_path('images/posts'), $imageName); // Simpan ke folder
-
-            $post->post_image = $imageName; // Simpan hanya nama file ke database
         }
 
         // Update post
@@ -67,7 +80,6 @@ class PostEditAdmin extends Component
 
         return redirect()->route('posts.edit', ['id' => $post->id])->with('message', 'Post updated successfully.');
     }
-
 
     public function edit($id)
     {
