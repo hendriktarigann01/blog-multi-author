@@ -9,15 +9,24 @@
         <div class="w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-[#e9e6e4] overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-cyan-800">
+
+                    <!-- Alert Error -->
+                    @if ($errors->any())
+                    <x-alert-message type="danger" :message="$errors->first()" />
+                    @endif
+
+                    <!-- Alert Success -->
+                    @if (session('success'))
+                    <x-alert-message type="success" :message="session('success')" />
+                    @endif
+                    
                     <div class="flex justify-between mb-3 pb-3 border-b-2 border-[#94918f]">
                         <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold">Create Post</p>
                         <a href="{{ route('dashboard') }}">
-                            <button
-                                class="flex border border-[#94918f] text-[#94918f] justify-center items-center w-10 h-10 rounded">
-                                <i class="fa-solid fa-angles-left"></i>
-                            </button>
+                            <x-button-back />
                         </a>
                     </div>
+
                     <!-- Form untuk Create Post -->
                     <form action="{{ route('posts.dashboard') }}" method="POST" enctype="multipart/form-data">
                         @csrf

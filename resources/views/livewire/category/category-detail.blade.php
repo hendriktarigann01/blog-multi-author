@@ -17,10 +17,10 @@
         <div class="flex justify-center md:justify-start">
             @if ($category->category_name === 'Technology')
             <img src="https://images.unsplash.com/photo-1607706189992-eae578626c86?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Technology" class="rounded-lg my-10 w-80 h-80 md:w-72 md:h-72">
+                alt="Technology" class="rounded my-10 w-full object-cover h-96 cursor-pointer" />
             @elseif ($category->category_name === 'Fitness')
             <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1975&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Fitness" class="rounded-lg my-10 w-80 h-80 md:w-72 md:h-72">
+                alt="Fitness" class="rounded my-10 w-full object-cover h-96 cursor-pointer" />
             @endif
         </div>
         <p class="text-justify text-sm sm:text-base md:text-lg leading-loose my-10 mx-5 md:mx-0">
@@ -34,8 +34,9 @@
             <a href="{{ route('posts.show', $post->id) }}" class="cursor-pointer">
                 <div class="content my-2 md:my-0">
                     <div class="overflow-hidden w-full h-40">
-                        <img src="{{ url('images/posts/' . $post->post_image) }}" alt="Post Image"
-                            class="rounded-lg transition-transform duration-500 ease-in-out transform hover:scale-110 w-full h-full object-cover">
+                        <x-cld-image public-id="{{ $post->post_image_public_id }}"
+                            class="rounded-lg transition-transform duration-500 ease-in-out transform hover:scale-110 w-full h-full object-cover"
+                            alt="Recent Post Image" />
                     </div>
                     <p class="my-2 text-sm sm:text-base md:text-lg font-bold">{{ $post->post_title }}</p>
                     <p class="my-2">{{ $post->post_views }} Views</p>

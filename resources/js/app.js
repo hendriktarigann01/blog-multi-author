@@ -84,4 +84,3 @@ dropArea.addEventListener("drop", (event) => {
         fileInput.dispatchEvent(new Event("change"));
     }
 });
-

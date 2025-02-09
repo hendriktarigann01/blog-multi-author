@@ -13,14 +13,15 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
     <!-- Styles -->
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/app.scss'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
 
 <body class="antialiased font-sans">
-    <main>
-        {{ $slot }}
-    </main>
+    <div class="min-h-screen bg-gray-100">
+        <main>
+            {{ $slot }}
+        </main>
     </div>
 </body>
 @livewireScripts

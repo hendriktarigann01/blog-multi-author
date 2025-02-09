@@ -19,8 +19,12 @@ class PostController extends Controller
             'post_category_id' => 'required|string|max:255',
             'post_description' => 'required|string',
             'post_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'post_image.mimes' => 'Format gambar harus berupa JPEG, PNG, JPG, atau GIF.',
+            'post_image.image' => 'File yang diunggah harus berupa gambar.',
         ]);
     }
+
 
     private function handleImageUpload(Request $request)
     {
@@ -51,7 +55,6 @@ class PostController extends Controller
 
                 return null;
             } catch (\Exception $e) {
-                Log::error($e->getMessage());
                 return null;
             }
         }
@@ -74,22 +77,27 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $this->validateRequest($request);
+        try {
+            $validated = $this->validateRequest($request);
 
-        $imageData = $this->handleImageUpload($request);
+            $imageData = $this->handleImageUpload($request);
 
-        if ($imageData) {
-            $validated['post_image_url'] = $imageData['url'];
-            $validated['post_image_public_id'] = $imageData['public_id'];
-            $validated['post_image'] = $imageData['original_filename'];
+            if ($imageData) {
+                $validated['post_image_url'] = $imageData['url'];
+                $validated['post_image_public_id'] = $imageData['public_id'];
+                $validated['post_image'] = $imageData['original_filename'];
+            }
+
+            $validated['post_users_id'] = Auth::id();
+
+            $post = Post::create($validated);
+
+            return $this->handleResponse($request, $post);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()->withErrors($e->validator)->withInput();
         }
-
-        $validated['post_users_id'] = Auth::id();
-
-        $post = Post::create($validated);
-
-        return $this->handleResponse($request, $post);
     }
+
 
     public function index()
     {

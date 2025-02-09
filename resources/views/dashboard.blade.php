@@ -40,8 +40,7 @@
 
                     @foreach($posts as $post)
                     <div class="card max-w-xs m-10">
-                        <img class="card-img-top size-60" src="{{ url('images/posts/' . $post->post_image) }}"
-                            alt="{{ $post->post_title }}">
+                        <x-cld-image public-id="{{ $post->post_image_public_id }}" class="card-img-top size-60" />
                         <div class="card-body">
                             <h5 class="my-2 card-title text-xl font-semibold">{{ $post->post_title }}</h5>
                             <p class="my-2 card-text text-justify h-32">{{ Str::limit($post->post_description, 150) }}

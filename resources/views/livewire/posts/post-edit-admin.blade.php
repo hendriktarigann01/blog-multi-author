@@ -12,17 +12,12 @@
                     <div class="flex justify-between mb-3 pb-3 border-b-2 border-[#94918f]">
                         <p class="text-2xl sm:text-3xl md:text-4xl font-extrabold">Edit Post</p>
                         <a href="{{ route('posts.detailAdmin', $post->id) }}">
-                            <button
-                                class="flex border border-[#94918f] text-[#94918f] justify-center items-center w-10 h-10 rounded">
-                                <i class="fa-solid fa-angles-left"></i>
-                            </button>
+                           <x-button-back />
                         </a>
                     </div>
 
-                    <!-- Form untuk Edit Post -->
                     <form action="{{ route('posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        {{-- Title --}}
                         <div class="mb-4">
                             <label for="post_title" class="block text-sm font-medium">Post Title</label>
                             <input type="text" id="post_title" name="post_title"
@@ -31,7 +26,6 @@
                                 required>
                         </div>
 
-                        {{-- Category --}}
                         <div class="mb-4">
                             <label for="post_category_id" class="block text-sm font-medium">Category</label>
                             <select name="post_category_id" id="post_category_id"
@@ -45,28 +39,24 @@
                             </select>
                         </div>
 
-                        {{-- Description --}}
                         <div class="mb-4">
                             <label for="post_description" class="block text-sm font-medium">Post Description</label>
                             <textarea id="post_description" name="post_description" rows="3"
                                 class="mt-2 text-cyan-800 bg-transparent block w-full rounded-md shadow-sm border-[#94918f] focus:ring-cyan-800 focus:border-cyan-800">{{ old('post_description', $post->post_description) }}</textarea>
                         </div>
 
-                        {{-- Current Image --}}
                         <div class="mb-4">
                             <label for="new_image" class="block text-sm font-medium">Current Image</label>
-                            <img src="{{ url('images/posts/' . $post->post_image) }}" alt="Post Image"
-                                class="rounded w-40 h-40 object-cover ">
+                            <x-cld-image public-id="{{ $post->post_image_public_id }}" alt="Post Image"
+                                class="rounded w-40 h-40 object-cover " />
                         </div>
 
-                        {{-- New Image --}}
                         <div class="mb-4">
                             <label for="new_image" class="block text-sm font-medium">New Image (Optional)</label>
                             <input type="file" id="new_image" name="new_image"
                                 class="block w-full text-sm text-cyan-800 mt-2">
                         </div>
 
-                        {{-- Submit --}}
                         <div class="flex justify-end space-x-2">
                             <button type="submit"
                                 class="px-4 py-2 bg-cyan-800 text-white rounded hover:bg-cyan-900 focus:ring focus:ring-cyan-800">

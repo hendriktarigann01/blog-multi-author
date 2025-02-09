@@ -16,5 +16,7 @@ class Post extends Model
         'post_image',
         'post_users_id',
         'post_views',
+        'post_image_url', 
+        'post_image_public_id', 
     ];
 }
